@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Mother's Day!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #fce4ec; /* Light pink background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden; 
+        }
+
+        .card-container {
+            perspective: 1500px;
+            width: 90vw; 
+            max-width: 800px; /* Increased max-width for larger card */
+            height: 85vh;
+            max-height: 550px; /* Increased max-height */
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+            cursor: pointer;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card.open {
+            transform: rotateY(-180deg);
+            cursor: default;
+        }
+
+        .card-panel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .card-front {
+            background-color: #fff0f5; 
+            z-index: 2; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border: 5px solid #ffc0cb; 
+            transform: rotateY(0deg); 
+        }
+
+        .card-front h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.8rem, 9vw, 5rem); 
+            color: #c2185b; 
+            margin-bottom: 10px;
+        }
+
+        .card-front p {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.2rem, 4.5vw, 1.8rem); 
+            color: #e91e63; 
+        }
+
+        .flower-decoration {
+            font-size: clamp(2.2rem, 7vw, 3.5rem);
+            color: #ff80ab; 
+            margin-top: 15px;
+        }
+
+        .card-inside {
+            background-color: #fff9c4; 
+            transform: rotateY(180deg); 
+            z-index: 1; 
+            display: flex;
+            flex-direction: column; 
+            padding: 20px;
+            border: 5px solid #ffc0cb;
+        }
+
+        .inside-left, .inside-right-wrapper { /* Renamed inside-right to inside-right-wrapper for clarity */
+            width: 100%; 
+            padding: 10px; /* Reduced padding slightly */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        @media (min-width: 640px) { /* sm breakpoint */
+            .card-inside {
+                flex-direction: row; 
+            }
+            .inside-left, .inside-right-wrapper {
+                width: 50%;
+                height: 100%; /* Ensure wrapper takes full height of its half */
+            }
+        }
+
+        .inside-left h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: #ad1457; 
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .inside-left p {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: #795548; 
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .inside-right-content { /* New container for image layout */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically */
+            gap: 15px; /* Increased gap */
+            width: 100%;
+            height: 100%; /* Take full height of parent */
+        }
+
+        .top-image-container {
+            width: clamp(120px, 40vw, 180px); /* Responsive width */
+            height: clamp(100px, 30vw, 150px); /* Responsive height */
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .bottom-images-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Increased gap */
+            width: 100%;
+        }
+
+        .bottom-image-container {
+            width: clamp(80px, 25vw, 120px); /* Responsive width */
+            height: clamp(100px, 30vw, 130px); /* Responsive height */
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block; /* Remove extra space below image */
+            transition: transform 0.3s ease;
+        }
+        .card-image:hover {
+            transform: scale(1.05);
+        }
+
+        .click-to-open {
+            margin-top: 20px;
+            font-style: italic;
+            color: #777;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-modal {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 90vw; /* Responsive max width */
+            max-height: 90vh; /* Responsive max height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* For close button positioning */
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 60vh; /* Limit image height */
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .lightbox-text {
+            margin-top: 15px;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            color: #333;
+            text-align: center;
+            max-height: 20vh; /* Limit text height */
+            overflow-y: auto; /* Allow scrolling for text */
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            color: #555;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .lightbox-close:hover {
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <div class="card" id="motherCard">
+            <div class="card-panel card-front">
+                <div>
+                    <h1>Happy Mother's Day</h1>
+                    <p>To the most wonderful Mom!</p>
+                    <div class="flower-decoration">🌸💖🌷</div>
+                    <p class="click-to-open">(Click to open)</p>
+                </div>
+            </div>
+
+            <div class="card-panel card-inside">
+                <div class="inside-left">
+                    <h2>Dearest Mom,</h2>
+                    <p>
+                        Wishing you a day filled with all the love and happiness you bring into our lives.
+                        Thank you for your endless patience, your unwavering support, and the warmth of your smile.
+                        You are truly cherished. Happy Mother's Day!
+                    </p>
+                    <p style="margin-top: 15px; font-style: italic;">With all my love,</p>
+                    <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #c2185b;">Your Loving Child</p>
+                </div>
+
+                <div class="inside-right-wrapper">
+                    <div class="inside-right-content">
+                        <div class="top-image-container">
+                            <img src="https://placehold.co/400x300/FFC0CB/C2185B?text=Beautiful+Memory" alt="Memory 1" class="card-image" data-lightbox-text="This was such a beautiful day, full of sunshine and laughter. I'll always remember how happy we were.">
+                        </div>
+                        <div class="bottom-images-container">
+                            <div class="bottom-image-container">
+                                <img src="https://placehold.co/300x400/D1C4E9/673AB7?text=Special+Times" alt="Memory 2" class="card-image" data-lightbox-text="Thinking of all the special times we've shared. Every moment is a treasure.">
+                            </div>
+                            <div class="bottom-image-container">
+                                <img src="https://placehold.co/300x400/C5CAE9/3F51B5?text=Always+There" alt="Memory 3" class="card-image" data-lightbox-text="Thank you for always being there, Mom. Your support means everything.">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lightbox-overlay" id="lightboxOverlay">
+        <div class="lightbox-modal">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <img src="" alt="Lightbox Image" class="lightbox-image" id="lightboxImg">
+            <div class="lightbox-text" id="lightboxTextContent">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the main card element
+        const card = document.getElementById('motherCard');
+        // Get all images that should trigger the lightbox
+        const cardImages = document.querySelectorAll('.card-image');
+        
+        // Lightbox elements
+        const lightboxOverlay = document.getElementById('lightboxOverlay');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxTextContent = document.getElementById('lightboxTextContent');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        // --- Card Opening Logic ---
+        card.addEventListener('click', function(event) {
+            // Only open the card if it's not already open and the click is on the card front
+            if (!card.classList.contains('open') && event.target.closest('.card-front')) {
+                card.classList.add('open');
+            }
+        });
+
+        // --- Lightbox Logic ---
+        cardImages.forEach(image => {
+            image.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent card from reacting if it's somehow still interactive
+
+                // Get the image source and the text from data attribute
+                const imgSrc = this.src;
+                const text = this.dataset.lightboxText || "No additional text available for this memory."; // Fallback text
+
+                // Populate and show the lightbox
+                lightboxImg.src = imgSrc;
+                lightboxTextContent.textContent = text;
+                lightboxOverlay.style.display = 'flex'; // Use flex to center content
+            });
+        });
+
+        // Function to close the lightbox
+        function closeLightbox() {
+            lightboxOverlay.style.display = 'none';
+        }
+
+        // Event listener for the close button
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Event listener to close lightbox when clicking on the overlay
+        lightboxOverlay.addEventListener('click', function(event) {
+            if (event.target === lightboxOverlay) { // Only close if the overlay itself is clicked, not its children
+                closeLightbox();
+            }
+        });
+        
+        // --- Responsive Adjustments & Fallbacks ---
+        window.addEventListener('resize', () => {
+            // Future JavaScript-based responsive adjustments if needed
+        });
+
+        document.querySelectorAll('img.card-image').forEach(img => {
+            img.addEventListener('error', function() {
+                this.src = 'https://placehold.co/200x200/cccccc/333333?text=Image+Error';
+                this.alt = 'Error loading image';
+            });
+        });
+
+    </script>
+
+</body>
+</html>
