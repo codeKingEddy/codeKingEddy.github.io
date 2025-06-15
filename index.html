@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Fathers's Day!</title>
+    <title>Happy Father's Day!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Playfair Display', serif;
-            background-color: #fce4ec; /* Light pink background */
+            background-color: #e8f5e9; /* Light green background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -23,9 +23,9 @@
         .card-container {
             perspective: 1500px;
             width: 90vw; 
-            max-width: 800px; /* Increased max-width for larger card */
+            max-width: 800px; 
             height: 85vh;
-            max-height: 550px; /* Increased max-height */
+            max-height: 550px;
         }
 
         .card {
@@ -57,7 +57,7 @@
         }
 
         .card-front {
-            background-color: #fff0f5; 
+            background-color: #f1f8e9; /* Very light green/off-white */
             z-index: 2; 
             display: flex;
             flex-direction: column;
@@ -65,42 +65,42 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-            border: 5px solid #ffc0cb; 
+            border: 5px solid #a5d6a7; /* Medium green border */
             transform: rotateY(0deg); 
         }
 
         .card-front h1 {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.8rem, 9vw, 5rem); 
-            color: #c2185b; 
+            color: #2e7d32; /* Dark green */
             margin-bottom: 10px;
         }
 
         .card-front p {
             font-family: 'Dancing Script', cursive;
             font-size: clamp(1.2rem, 4.5vw, 1.8rem); 
-            color: #e91e63; 
+            color: #43a047; /* Bright green */
         }
 
-        .flower-decoration {
+        .decoration {
             font-size: clamp(2.2rem, 7vw, 3.5rem);
-            color: #ff80ab; 
+            color: #66bb6a; /* Lighter green */
             margin-top: 15px;
         }
 
         .card-inside {
-            background-color: #fff9c4; 
+            background-color: #f1f8e9; /* Very light green/off-white */
             transform: rotateY(180deg); 
             z-index: 1; 
             display: flex;
             flex-direction: column; 
             padding: 20px;
-            border: 5px solid #ffc0cb;
+            border: 5px solid #a5d6a7; /* Medium green border */
         }
 
-        .inside-left, .inside-right-wrapper { /* Renamed inside-right to inside-right-wrapper for clarity */
+        .inside-left, .inside-right-wrapper {
             width: 100%; 
-            padding: 10px; /* Reduced padding slightly */
+            padding: 10px; 
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -114,38 +114,38 @@
             }
             .inside-left, .inside-right-wrapper {
                 width: 50%;
-                height: 100%; /* Ensure wrapper takes full height of its half */
+                height: 100%;
             }
         }
 
         .inside-left h2 {
             font-family: 'Dancing Script', cursive;
             font-size: clamp(1.8rem, 5vw, 2.8rem);
-            color: #ad1457; 
+            color: #2e7d32; /* Dark green */
             margin-bottom: 15px;
             text-align: center;
         }
 
         .inside-left p {
             font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            color: #795548; 
+            color: #37474f; /* Dark gray for text */
             line-height: 1.6;
             text-align: center;
         }
 
-        .inside-right-content { /* New container for image layout */
+        .inside-right-content {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Center content vertically */
-            gap: 15px; /* Increased gap */
+            justify-content: center;
+            gap: 15px; 
             width: 100%;
-            height: 100%; /* Take full height of parent */
+            height: 100%;
         }
 
         .top-image-container {
-            width: clamp(120px, 40vw, 180px); /* Responsive width */
-            height: clamp(100px, 30vw, 150px); /* Responsive height */
+            width: clamp(120px, 40vw, 180px); 
+            height: clamp(100px, 30vw, 150px); 
             cursor: pointer;
             border-radius: 8px;
             overflow: hidden;
@@ -155,13 +155,13 @@
         .bottom-images-container {
             display: flex;
             justify-content: center;
-            gap: 15px; /* Increased gap */
+            gap: 15px;
             width: 100%;
         }
 
         .bottom-image-container {
-            width: clamp(80px, 25vw, 120px); /* Responsive width */
-            height: clamp(100px, 30vw, 130px); /* Responsive height */
+            width: clamp(80px, 25vw, 120px);
+            height: clamp(100px, 30vw, 130px);
             cursor: pointer;
             border-radius: 8px;
             overflow: hidden;
@@ -172,7 +172,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block; /* Remove extra space below image */
+            display: block; 
             transition: transform 0.3s ease;
         }
         .card-image:hover {
@@ -182,7 +182,7 @@
         .click-to-open {
             margin-top: 20px;
             font-style: italic;
-            color: #777;
+            color: #555;
             font-size: clamp(0.8rem, 2.5vw, 1rem);
         }
 
@@ -194,10 +194,10 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
-            display: none; /* Hidden by default */
+            display: none; 
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Ensure it's on top */
+            z-index: 1000;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -207,17 +207,17 @@
             padding: 25px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            max-width: 90vw; /* Responsive max width */
-            max-height: 90vh; /* Responsive max height */
+            max-width: 90vw;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative; /* For close button positioning */
+            position: relative;
         }
 
         .lightbox-image {
             max-width: 100%;
-            max-height: 60vh; /* Limit image height */
+            max-height: 60vh; 
             object-fit: contain;
             border-radius: 8px;
             margin-bottom: 15px;
@@ -228,8 +228,8 @@
             font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: #333;
             text-align: center;
-            max-height: 20vh; /* Limit text height */
-            overflow-y: auto; /* Allow scrolling for text */
+            max-height: 20vh;
+            overflow-y: auto;
             width: 100%;
             padding: 0 10px;
             box-sizing: border-box;
@@ -253,39 +253,43 @@
 <body>
 
     <div class="card-container">
-        <div class="card" id="motherCard">
+        <div class="card" id="fatherCard"> <!-- Changed ID for clarity -->
+            <!-- Card Front -->
             <div class="card-panel card-front">
                 <div>
-                    <h1>Happy Fathers's Day</h1>
-                    <p>To the greatest Dad!</p>
-                    <div class="flower-decoration">*the goat if you will</div>
+                    <h1>Happy Father's Day</h1>
+                    <p>To the GOAT Dad!</p>
+                    <div class="decoration">🏆👔⭐</div>
                     <p class="click-to-open">(Click to open)</p>
                 </div>
             </div>
 
+            <!-- Card Inside -->
             <div class="card-panel card-inside">
+                <!-- Left Side of Inside Card -->
                 <div class="inside-left">
-                    <h2>Dearest Mom,</h2>
+                    <h2>Hey Dad,</h2>
                     <p>
-                        Thank you for all you've done as a mother to me! You're the best mom I could ever ask for and you deserve this day.
-                        I decided to make a virtual card for you because I thought it would be cool, however I couldn't find that many pictures on my phone.
-                        I guess that means we need to take more. If you click on them they have messages. Enjoy!
+                        Just wanted to say Happy Father's day and thank you for all you do for our family!
+                        I've had a lot of fun these past couple of years on our drives to and from school, and I appreciate
+                        the perspectives you bring. Hope you have a great day and enjoy this card.
                     </p>
-                    <p style="margin-top: 15px; font-style: italic;">From Your Oldest Son,</p>
-                    <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #c2185b;">Edward</p>
+                    <p style="margin-top: 15px; font-style: italic;">With love,</p>
+                    <p style="font-family: 'Dancing Script', cursive; font-size: 1.5rem; color: #43a047;">Ed IV</p>
                 </div>
 
+                <!-- Right Side of Inside Card -->
                 <div class="inside-right-wrapper">
                     <div class="inside-right-content">
                         <div class="top-image-container">
-                            <img src="IMG_0128.jpg" alt="Memory 1" class="card-image" data-lightbox-text="All of the planning you do week in and week out is greatly appreciated, from meals to pickups from school, you are the logistic heart of the family. And even when you may not want to do it, you always find a way to get it done. Thank You">
+                            <img src="https://placehold.co/400x300/a5d6a7/2e7d32?text=Great+Advice" alt="Memory 1" class="card-image" data-lightbox-text="Remembering all the great advice you've given me over the years. Thank you for everything.">
                         </div>
                         <div class="bottom-images-container">
                             <div class="bottom-image-container">
-                                <img src="IMG_1781_Original.jpg" alt="Memory 2" class="card-image" data-lightbox-text="As one of your sons, and I'm sure the other would agree, Not only do we look like you, but we are influenced greatly by you as well. You are a great example of a strong role model and leader, and I always try to be like you.">
+                                <img src="https://placehold.co/300x400/81c784/1b5e20?text=Fun+Times" alt="Memory 2" class="card-image" data-lightbox-text="Thinking of all the fun times and adventures we've had. So many great memories!">
                             </div>
                             <div class="bottom-image-container">
-                                <img src="IMG_0767.jpg" alt=" 3" class="card-image" data-lightbox-text="Outside of just being a role model and a leader, you are a great support system for Dad, and its obvious from the outside looking in. Everybody looks up to you as a mother and wife and I take pride in that even though it isn't me. Thanks for being the cool mom!">
+                                <img src="https://placehold.co/300x400/c8e6c9/2e7d32?text=Always+My+Hero" alt="Memory 3" class="card-image" data-lightbox-text="You've always been my hero and my biggest supporter. I'm so lucky to have you as my Dad.">
                             </div>
                         </div>
                     </div>
@@ -294,18 +298,19 @@
         </div>
     </div>
 
+    <!-- Lightbox Modal Structure -->
     <div class="lightbox-overlay" id="lightboxOverlay">
         <div class="lightbox-modal">
             <span class="lightbox-close" id="lightboxClose">&times;</span>
             <img src="" alt="Lightbox Image" class="lightbox-image" id="lightboxImg">
             <div class="lightbox-text" id="lightboxTextContent">
-                </div>
+            </div>
         </div>
     </div>
 
     <script>
         // Get the main card element
-        const card = document.getElementById('motherCard');
+        const card = document.getElementById('fatherCard');
         // Get all images that should trigger the lightbox
         const cardImages = document.querySelectorAll('.card-image');
         
@@ -326,16 +331,14 @@
         // --- Lightbox Logic ---
         cardImages.forEach(image => {
             image.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent card from reacting if it's somehow still interactive
+                event.stopPropagation(); 
 
-                // Get the image source and the text from data attribute
                 const imgSrc = this.src;
-                const text = this.dataset.lightboxText || "No additional text available for this memory."; // Fallback text
+                const text = this.dataset.lightboxText || "No additional text available for this memory.";
 
-                // Populate and show the lightbox
                 lightboxImg.src = imgSrc;
                 lightboxTextContent.textContent = text;
-                lightboxOverlay.style.display = 'flex'; // Use flex to center content
+                lightboxOverlay.style.display = 'flex';
             });
         });
 
@@ -344,17 +347,14 @@
             lightboxOverlay.style.display = 'none';
         }
 
-        // Event listener for the close button
         lightboxClose.addEventListener('click', closeLightbox);
 
-        // Event listener to close lightbox when clicking on the overlay
         lightboxOverlay.addEventListener('click', function(event) {
-            if (event.target === lightboxOverlay) { // Only close if the overlay itself is clicked, not its children
+            if (event.target === lightboxOverlay) { 
                 closeLightbox();
             }
         });
         
-        // --- Responsive Adjustments & Fallbacks ---
         window.addEventListener('resize', () => {
             // Future JavaScript-based responsive adjustments if needed
         });
@@ -365,7 +365,6 @@
                 this.alt = 'Error loading image';
             });
         });
-
     </script>
 
 </body>
